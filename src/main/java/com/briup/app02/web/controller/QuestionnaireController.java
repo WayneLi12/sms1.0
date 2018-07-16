@@ -27,6 +27,7 @@ public class QuestionnaireController {
 			return MsgResponse.success("查询成功", list);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
@@ -38,6 +39,7 @@ public class QuestionnaireController {
 			return MsgResponse.success("查询成功", q);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
@@ -49,6 +51,7 @@ public class QuestionnaireController {
 			return MsgResponse.success("保存成功",null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
@@ -60,6 +63,7 @@ public class QuestionnaireController {
 			return MsgResponse.success("更新成功",null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
@@ -71,6 +75,7 @@ public class QuestionnaireController {
 			return MsgResponse.success("删除成功",null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
