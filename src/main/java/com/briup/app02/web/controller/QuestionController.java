@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.app02.bean.Course;
-import com.briup.app02.service.ICourseService;
+import com.briup.app02.bean.Question;
+import com.briup.app02.service.IQuestionService;
 import com.briup.app02.util.MsgResponse;
 
 @RestController
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/question")
+public class QuestionController {
 
 	@Autowired
-	private ICourseService courseService;
+	private IQuestionService questionService;
 	
-	@GetMapping("findAllCourse")
-	public MsgResponse findAllCourse(){
+	@GetMapping("findAllQuestion")
+	public MsgResponse findAllQuestion(){
 		try {
-			List<Course> list = courseService.findAll();
+			List<Question> list = questionService.findAll();
 			return MsgResponse.success("查询成功", list);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -30,44 +30,44 @@ public class CourseController {
 		}
 	}
 	
-	@GetMapping("findCourseById")
-	public MsgResponse findCourseById(long id){
+	@GetMapping("findQuestionById")
+	public MsgResponse findQuestionById(long id){
 		try {
-			Course c = courseService.findById(id);
-			return MsgResponse.success("查询成功", c);
+			Question q = questionService.findById(id);
+			return MsgResponse.success("查询成功", q);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@PostMapping("saveCourse")
-	public MsgResponse saveCourse(Course course){
+	@PostMapping("saveQuestion")
+	public MsgResponse saveQuestion(Question question){
 		try {
-			courseService.save(course);
-			return MsgResponse.success("保存成功", null);
+			questionService.save(question);
+			return MsgResponse.success("保存成功",null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@PostMapping("updateCourseInfo")
-	public MsgResponse updateCourseInfo(Course course){
+	@PostMapping("updateQuestionInfo")
+	public MsgResponse updateQuestionInfo(Question question){
 		try {
-			courseService.update(course);
-			return MsgResponse.success("更新成功", null);
+			questionService.update(question);
+			return MsgResponse.success("更新成功",null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@PostMapping("deleteCourse")
-	public MsgResponse deleteCourse(long id){
+	@GetMapping("deleteQuestion")
+	public MsgResponse deleteQuestion(long id){
 		try {
-			courseService.delete(id);
-			return MsgResponse.success("删除成功", null);
+			questionService.delete(id);
+			return MsgResponse.success("删除成功",null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return MsgResponse.error(e.getMessage());

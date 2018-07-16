@@ -5,7 +5,6 @@ import java.util.List;
 import com.briup.app02.bean.Course;
 
 public interface ICourseService {
-
 	List<Course> findAll() throws Exception;
 	
 	Course findById(long id) throws Exception;

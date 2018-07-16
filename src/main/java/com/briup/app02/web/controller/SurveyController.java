@@ -8,68 +8,75 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.app02.bean.Course;
-import com.briup.app02.service.ICourseService;
+import com.briup.app02.bean.Clazz;
+import com.briup.app02.bean.Survey;
+import com.briup.app02.service.ISurveyService;
 import com.briup.app02.util.MsgResponse;
 
+
 @RestController
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/survey")
+public class SurveyController {
 
 	@Autowired
-	private ICourseService courseService;
+	private ISurveyService surveyService;
 	
-	@GetMapping("findAllCourse")
-	public MsgResponse findAllCourse(){
+	@GetMapping("findAllSurvey")
+	public MsgResponse findAllSurvey() {
 		try {
-			List<Course> list = courseService.findAll();
+			List<Survey> list = surveyService.findAll();
 			return MsgResponse.success("查询成功", list);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@GetMapping("findCourseById")
-	public MsgResponse findCourseById(long id){
+
+	@GetMapping("findSurveyById")
+	public MsgResponse findSurveyById(long id) {
 		try {
-			Course c = courseService.findById(id);
-			return MsgResponse.success("查询成功", c);
+			Survey survey = surveyService.findById(id);
+			return MsgResponse.success("查询成功", survey);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@PostMapping("saveCourse")
-	public MsgResponse saveCourse(Course course){
+
+	@PostMapping("saveSurvey")
+	public MsgResponse saveSurvey(Survey survey) {
 		try {
-			courseService.save(course);
+			surveyService.save(survey);
 			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@PostMapping("updateCourseInfo")
-	public MsgResponse updateCourseInfo(Course course){
+
+	@PostMapping("updateSurveyInfo")
+	public MsgResponse updateSurveyInfo(Survey survey) {
 		try {
-			courseService.update(course);
+			surveyService.update(survey);
 			return MsgResponse.success("更新成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@PostMapping("deleteCourse")
-	public MsgResponse deleteCourse(long id){
+
+	@GetMapping("deleteSurveyById")
+	public MsgResponse deleteSurveyById(long id) {
 		try {
-			courseService.delete(id);
+			surveyService.delete(id);
 			return MsgResponse.success("删除成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}

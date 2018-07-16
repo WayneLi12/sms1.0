@@ -9,20 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.app02.bean.Course;
-import com.briup.app02.service.ICourseService;
+import com.briup.app02.bean.Qq;
+import com.briup.app02.service.IQqService;
 import com.briup.app02.util.MsgResponse;
 
 @RestController
-@RequestMapping("/course")
-public class CourseController {
+@RequestMapping("/Qq")
+public class QqController {
 
 	@Autowired
-	private ICourseService courseService;
+	private IQqService qqService;
 	
-	@GetMapping("findAllCourse")
-	public MsgResponse findAllCourse(){
+	@GetMapping("findAllQq")
+	public MsgResponse findAllQq(){
 		try {
-			List<Course> list = courseService.findAll();
+			List<Qq> list = qqService.findAll();
 			return MsgResponse.success("查询成功", list);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -30,21 +31,21 @@ public class CourseController {
 		}
 	}
 	
-	@GetMapping("findCourseById")
-	public MsgResponse findCourseById(long id){
+	@GetMapping("findQqById")
+	public MsgResponse findQqById(long id){
 		try {
-			Course c = courseService.findById(id);
-			return MsgResponse.success("查询成功", c);
+			Qq q = qqService.findById(id);
+			return MsgResponse.success("查询成功", q);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@PostMapping("saveCourse")
-	public MsgResponse saveCourse(Course course){
+	@PostMapping("saveQq")
+	public MsgResponse saveQq(Qq q){
 		try {
-			courseService.save(course);
+			qqService.save(q);
 			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -52,10 +53,10 @@ public class CourseController {
 		}
 	}
 	
-	@PostMapping("updateCourseInfo")
-	public MsgResponse updateCourseInfo(Course course){
+	@PostMapping("updateQqInfo")
+	public MsgResponse updateQqInfo(Qq q){
 		try {
-			courseService.update(course);
+			qqService.update(q);
 			return MsgResponse.success("更新成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -63,10 +64,10 @@ public class CourseController {
 		}
 	}
 	
-	@PostMapping("deleteCourse")
-	public MsgResponse deleteCourse(long id){
+	@PostMapping("deleteQq")
+	public MsgResponse deleteQq(long id){
 		try {
-			courseService.delete(id);
+			qqService.delete(id);
 			return MsgResponse.success("删除成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
