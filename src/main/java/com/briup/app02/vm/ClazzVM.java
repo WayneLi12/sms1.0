@@ -1,11 +1,15 @@
-package com.briup.app02.bean;
+package com.briup.app02.vm;
 
-public class Clazz {
+import com.briup.app02.bean.Grade;
+import com.briup.app02.bean.User;
+
+public class ClazzVM {
 	private Long id;
 	private String name;
 	private String description;
-	private Long grade_id;
-	private Long user_id;
+	private Grade grade;	//年级
+	private User user;		//班主任
+	
 	public Long getId() {
 		return id;
 	}
@@ -24,19 +28,16 @@ public class Clazz {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Long getGrade_id() {
-		return grade_id;
+	public Grade getGrade() {
+		return grade;
 	}
-	public void setGrade_id(Long grade_id) {
-		this.grade_id = grade_id;
+	public void setGrade(Grade grade) {
+		this.grade = grade;
 	}
-	public Long getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
-
-	
-	
 }

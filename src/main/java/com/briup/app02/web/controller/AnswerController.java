@@ -13,6 +13,10 @@ import com.briup.app02.bean.Clazz;
 import com.briup.app02.service.IAnswerService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(description="答案相关接口")
 @RestController
 @RequestMapping("/answer")
 public class AnswerController {
@@ -20,6 +24,7 @@ public class AnswerController {
 	@Autowired
 	private IAnswerService answerService;
 	
+	@ApiOperation(value="查询所有答案")
 	@GetMapping("findAllAnswer")
 	public MsgResponse findAllAnswer() {
 		try {
@@ -31,7 +36,7 @@ public class AnswerController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	@ApiOperation(value="通过id查询所有答案")
 	@GetMapping("findAnswerById")
 	public MsgResponse findAnswerById(long id) {
 		try {
@@ -43,7 +48,8 @@ public class AnswerController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
+	@ApiOperation(value="保存答案")
 	@PostMapping("saveAnswer")
 	public MsgResponse saveAnswer(Answer answer) {
 		try {
@@ -55,7 +61,8 @@ public class AnswerController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
+	@ApiOperation(value="更新答案")
 	@PostMapping("updateAnswerInfo")
 	public MsgResponse updateAnswerInfo(Answer answer) {
 		try {
@@ -67,7 +74,8 @@ public class AnswerController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
+	@ApiOperation(value="通过id删除答案")
 	@GetMapping("deleteAnswerById")
 	public MsgResponse deleteAnswerById(long id) {
 		try {

@@ -12,13 +12,17 @@ import com.briup.app02.bean.Grade;
 import com.briup.app02.service.IGradeService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(description="年级相关接口")
 @RestController
 @RequestMapping("/grade")
 public class GradeController {
 	@Autowired
 	private IGradeService gradeService;
 	
+	@ApiOperation(value="查询所有年级")
 	@GetMapping("findAllGrade")
 	public MsgResponse findAllGrade(){
 		try {
@@ -31,6 +35,7 @@ public class GradeController {
 		}
 	}
 	
+	@ApiOperation(value="通过id查询年级")
 	@GetMapping("findGradeById")
 	public MsgResponse findGradeById(long id){
 		try {
@@ -43,6 +48,7 @@ public class GradeController {
 		}
 	}
 	
+	@ApiOperation(value="保存年级")
 	@PostMapping("saveGrade")
 	public MsgResponse saveGrade(Grade grade){
 		try {
@@ -55,6 +61,7 @@ public class GradeController {
 		}
 	}
 	
+	@ApiOperation(value="更新年级")
 	@PostMapping("updateGradeInfo")
 	public MsgResponse updateGradeInfo(Grade grade){
 		try {
@@ -67,6 +74,7 @@ public class GradeController {
 		}
 	}
 	
+	@ApiOperation(value="删除年级")
 	@GetMapping("deleteGrade")
 	public MsgResponse deleteGrade(long id){
 		try {

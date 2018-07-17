@@ -7,13 +7,19 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Clazz;
 import com.briup.app02.dao.ClazzMapper;
+import com.briup.app02.dao.extend.ClazzVMMapper;
 import com.briup.app02.service.IClazzService;
+import com.briup.app02.vm.ClazzVM;
 
+//用于标识这个类的身份
 @Service
 public class ClazzServiceImpl implements IClazzService{
 	
+	
 	@Autowired
 	private ClazzMapper clazzMapper;
+	@Autowired
+	private ClazzVMMapper clazzVMMapper;
 
 	@Override
 	public List<Clazz> findAll() throws Exception {
@@ -56,6 +62,18 @@ public class ClazzServiceImpl implements IClazzService{
 		else{
 			throw new Exception("要删除的班级不存在");
 		}
+	}
+
+	@Override
+	public List<ClazzVM> findAllClazzVM() throws Exception {
+		// TODO Auto-generated method stub
+		return clazzVMMapper.findAllClazzVM();
+	}
+
+	@Override
+	public ClazzVM findClazzVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return clazzVMMapper.findClazzVMById(id);
 	}
 	
 	

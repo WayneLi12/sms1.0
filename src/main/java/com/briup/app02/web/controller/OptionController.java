@@ -13,7 +13,12 @@ import com.briup.app02.bean.Option;
 import com.briup.app02.bean.Question;
 import com.briup.app02.service.IOptionService;
 import com.briup.app02.util.MsgResponse;
+import com.briup.app02.vm.OptionVM;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(description="选项相关接口")
 @RestController
 @RequestMapping("/option")
 public class OptionController {
@@ -21,6 +26,7 @@ public class OptionController {
 	@Autowired
 	private IOptionService optionService;
 	
+	@ApiOperation(value="查询所有选项",notes="只能查询出选项的基本信息，无法级联查询到问题")
 	@GetMapping("findAllOption")
 	public MsgResponse findAllOption(){
 		try {
@@ -32,12 +38,38 @@ public class OptionController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	@ApiOperation(value="查询所有选项",notes="查询出选项的基本信息，并且可以级联查询到问题")
+	@GetMapping("findAllOptionVM")
+	public MsgResponse findAllOptionVM(){
+		try {
+			List<OptionVM> list = optionService.findAllOptionVM(); 
+			return MsgResponse.success("查询成功", list);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
+	@ApiOperation(value="通过id查询选项",notes="查询出想选项的基本信息，无法级联查询到问题")
 	@GetMapping("findOptionById")
 	public MsgResponse findOptionById(long id){
 		try {
 			Option option= optionService.findById(id);
 			return MsgResponse.success("查询成功", option);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="通过id查询选项",notes="查询出选项的基本信息，并且可以级联查询到问题")
+	@GetMapping("findOptionVMById")
+	public MsgResponse findOptionVMById(long id){
+		try {
+			OptionVM optionVM = optionService.findOptionVMById(id);
+			return MsgResponse.success("查询成功", optionVM);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

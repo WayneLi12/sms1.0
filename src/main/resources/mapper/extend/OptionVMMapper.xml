@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.app02.dao.extend.OptionVMMapper">
+	<!-- 查询所有选项信息 -->
+	<!-- 
+	clazzVM    column  -property
+		... ...	
+	grade_id - grade  通过grade_id 查找grade
+	user_id	- user  通过user_id 查找 user 
+	 -->
+	<select id="findAllOptionVM" resultMap="OptionVMResultMap">
+		select * from poll_option
+	</select>
+	
+	<resultMap type="com.briup.app02.vm.OptionVM" id="OptionVMResultMap">
+		<id column="id" property="id"/>
+		<result column="label" property="label"/>
+		<result column="content" property="content"/>
+		<association column ="question_id" property = "question" 
+		select="com.briup.app02.dao.QuestionMapper.findById">
+		</association>	
+	</resultMap>
+	
+	
+	<!-- 通过id号查询选项信息 -->
+	<select id="findOptionVMById" parameterType="long" resultMap="OptionVMResult">
+		select * from poll_option where id = #{id}
+	</select>
+	<resultMap type="com.briup.app02.vm.OptionVM" id="OptionVMResult">
+		<id column="id" property="id"/>
+		<result column="label" property="label"/>
+		<result column="content" property="content"/>
+		<association column ="question_id" property = "question" 
+		select="com.briup.app02.dao.QuestionMapper.findById">
+		</association>	
+	</resultMap>
+
+	<!-- 保存选项信息 -->
+	<insert id="save" parameterType="com.briup.app02.bean.Clazz">
+		insert into poll_clazz values
+		(null,#{name},#{description},#{grade_id},#{user_id})
+	</insert>
+	<!-- 更新选项信息 -->
+	<update id="update" parameterType="com.briup.app02.bean.Clazz">
+		update poll_clazz set
+		name =
+		#{name},
+		description = #{description},
+		grade_id = #{grade_id},
+		user_id = #{user_id}
+		where id = #{id}
+	</update>
+	<!-- 删除选项信息 -->
+	<delete id="delete" parameterType="long">
+		delete from poll_clazz
+		where
+		id = #{id}
+	</delete>
+	</mapper>

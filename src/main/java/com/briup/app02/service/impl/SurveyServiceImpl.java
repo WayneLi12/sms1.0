@@ -7,13 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Survey;
 import com.briup.app02.dao.SurveyMapper;
+import com.briup.app02.dao.extend.SurveyVMMapper;
 import com.briup.app02.service.ISurveyService;
+import com.briup.app02.vm.SurveyVM;
 
 @Service
 public class SurveyServiceImpl implements ISurveyService{
 
 	@Autowired
 	private SurveyMapper surveyMapper;
+	@Autowired
+	private SurveyVMMapper surveyVMMapper;
+	
 
 	@Override
 	public List<Survey> findAll() throws Exception {
@@ -22,10 +27,24 @@ public class SurveyServiceImpl implements ISurveyService{
 		return list;
 	}
 
+	
+	@Override
+	public List<SurveyVM> findAllSurveyVM() throws Exception {
+		// TODO Auto-generated method stub
+		List<SurveyVM> list = surveyVMMapper.findAllSurveyVM();
+		return list;
+	}
+	
 	@Override
 	public Survey findById(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return surveyMapper.findById(id);
+	}
+	
+	@Override
+	public SurveyVM findSurveyVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return surveyVMMapper.findSurveyVMById(id);
 	}
 
 	@Override
@@ -57,4 +76,5 @@ public class SurveyServiceImpl implements ISurveyService{
 			throw new Exception("要删除的调查不存在");
 		}
 	}
+
 }

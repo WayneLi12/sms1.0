@@ -12,7 +12,11 @@ import com.briup.app02.bean.Course;
 import com.briup.app02.bean.Qq;
 import com.briup.app02.service.IQqService;
 import com.briup.app02.util.MsgResponse;
+import com.briup.app02.vm.QqVM;
 
+import io.swagger.annotations.Api;
+
+@Api(description="桥表相关接口")
 @RestController
 @RequestMapping("/Qq")
 public class QqController {
@@ -32,6 +36,19 @@ public class QqController {
 		}
 	}
 	
+	@GetMapping("findAllQqVM")
+	public MsgResponse findAllQqVM(){
+		try {
+			List<QqVM> list = qqService.findAllQqVM();
+			return MsgResponse.success("查询成功", list);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	
 	@GetMapping("findQqById")
 	public MsgResponse findQqById(long id){
 		try {
@@ -43,6 +60,19 @@ public class QqController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	
+	@GetMapping("findQqVMById")
+	public MsgResponse findQqVMById(long id){
+		try {
+			QqVM qqVM = qqService.findQqVMById(id);
+			return MsgResponse.success("查询成功", qqVM);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	
 	@PostMapping("saveQq")
 	public MsgResponse saveQq(Qq q){

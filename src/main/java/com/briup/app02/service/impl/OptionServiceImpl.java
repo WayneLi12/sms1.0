@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Option;
 import com.briup.app02.dao.OptionMapper;
+import com.briup.app02.dao.extend.OptionVMMapper;
 import com.briup.app02.service.IOptionService;
+import com.briup.app02.vm.OptionVM;
 
 @Service
 public class OptionServiceImpl implements IOptionService{
 
 	@Autowired
 	private OptionMapper optionMapper;
+	@Autowired
+	private OptionVMMapper optionVMMapper;
 
 	@Override
 	public List<Option> findAll() throws Exception {
@@ -56,5 +60,17 @@ public class OptionServiceImpl implements IOptionService{
 		else{
 			throw new Exception("要删除的选项不存在");
 		}
+	}
+
+	@Override
+	public List<OptionVM> findAllOptionVM() throws Exception {
+		// TODO Auto-generated method stub
+		return optionVMMapper.findAllOptionVM();
+	}
+
+	@Override
+	public OptionVM findOptionVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return optionVMMapper.findOptionVMById(id);
 	}
 }
