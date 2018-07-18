@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Qq;
+import com.briup.app02.bean.Question;
+import com.briup.app02.bean.Questionnaire;
 import com.briup.app02.dao.QqMapper;
+import com.briup.app02.dao.QuestionMapper;
+import com.briup.app02.dao.QuestionnaireMapper;
 import com.briup.app02.dao.extend.QqVMMapper;
 import com.briup.app02.service.IQqService;
 import com.briup.app02.vm.QqVM;
@@ -18,6 +22,10 @@ public class QqServiceImpl implements IQqService{
 	private QqMapper qqMapper;
 	@Autowired
 	private QqVMMapper qqVMMapper;
+	@Autowired
+	private QuestionMapper questionMapper;
+	@Autowired
+	private QuestionnaireMapper questionnaireMapper;
 
 	@Override
 	public List<Qq> findAll() throws Exception {
@@ -44,11 +52,11 @@ public class QqServiceImpl implements IQqService{
 		return qqVMMapper.finQqVMById(id);
 	}
 	
-	@Override
+	/*@Override
 	public void save(Qq qq) throws Exception {
 		// TODO Auto-generated method stub
 		qqMapper.save(qq);
-	}
+	}*/
 
 	@Override
 	public void update(Qq qq) throws Exception {
@@ -73,4 +81,24 @@ public class QqServiceImpl implements IQqService{
 			throw new Exception("要删除的对象不存在");
 		}
 	}
+
+	@Override
+	public void saveVM(QqVM qq) throws Exception {
+		//Long qqId = qq.getId();
+		List<Question> questions = qq.getQuestions();
+		List<Questionnaire> questionnaires = qq.getQuestionnaires();
+		for(Question q : questions){
+			questionMapper.save(q);
+		}
+		for(Questionnaire qnaire : questionnaires){
+			questionnaireMapper.save(qnaire);
+		}
+		
+	}
 }
+
+
+
+
+
+

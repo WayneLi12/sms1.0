@@ -74,6 +74,18 @@ public class QqController {
 	
 	
 	@PostMapping("saveQq")
+	public MsgResponse saveQq(QqVM qqVM){
+		try {
+			qqService.saveVM(qqVM);
+			return MsgResponse.success("保存成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+/*	@PostMapping("saveQq")
 	public MsgResponse saveQq(Qq q){
 		try {
 			qqService.save(q);
@@ -83,7 +95,7 @@ public class QqController {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-	}
+	}*/
 	
 	@PostMapping("updateQqInfo")
 	public MsgResponse updateQqInfo(Qq q){

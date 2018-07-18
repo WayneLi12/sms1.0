@@ -17,7 +17,8 @@
 		select * from poll_qq where questionnaire_id = #{id}
 	</select>
 	<!-- 保存信息 -->
-	<insert id="save" parameterType="com.briup.app02.bean.Qq">
+	<insert id="save" useGeneratedKeys="true" keyProperty="id"
+	parameterType="com.briup.app02.bean.Qq">
 		insert into poll_qq values
 		(null,#{question_id},#{questionnaire_id})
 	</insert>

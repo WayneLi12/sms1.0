@@ -24,6 +24,24 @@ public class QuestionController {
 	@Autowired
 	private IQuestionService questionService;
 	
+	@ApiOperation(value="保存问题",notes="保存问题的同时还应该保存选项,问题id，选项id，选项中的外键question_id不必输入")
+	@PostMapping("saveQuestion")
+	public MsgResponse saveQuestion(QuestionVM questionVM){
+		try {
+			questionService.saveQuestionVM(questionVM);
+			return MsgResponse.success("保存成功",null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	
+	
+	
+	
+	
 	@ApiOperation(value="查询所有问题")
 	@GetMapping("findAllQuestion")
 	public MsgResponse findAllQuestion(){
@@ -76,7 +94,7 @@ public class QuestionController {
 		}
 	}
 	
-	@ApiOperation(value="保存问题")
+/*	@ApiOperation(value="保存问题")
 	@PostMapping("saveQuestion")
 	public MsgResponse saveQuestion(Question question){
 		try {
@@ -87,7 +105,7 @@ public class QuestionController {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-	}
+	}*/
 	
 	@ApiOperation(value="更新问题")
 	@PostMapping("updateQuestionInfo")

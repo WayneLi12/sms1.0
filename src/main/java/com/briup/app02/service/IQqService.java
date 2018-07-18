@@ -14,7 +14,7 @@ public interface IQqService {
 	
 	QqVM findQqVMById(long id) throws Exception;
 	
-	void save(Qq qq) throws Exception;
+	void saveVM(QqVM qq) throws Exception;
 	
 	void update(Qq qq) throws Exception;
 	

@@ -12,11 +12,15 @@
 		resultType="com.briup.app02.bean.Question">
 		select * from poll_question where id = #{id}
 	</select>
+	
 	<!-- 保存问题信息 -->
-	<insert id="save" parameterType="com.briup.app02.bean.Question">
-		insert into poll_question values
-		(null,#{name},#{questiontype})
+	<insert id="save" useGeneratedKeys="true" keyProperty="id"
+	 parameterType="com.briup.app02.bean.Question">
+		insert into poll_question 
+		values (null,#{name},#{questiontype})
 	</insert>
+	
+	
 	<!-- 更新问题信息 -->
 	<update id="update" parameterType="com.briup.app02.bean.Question">
 		update poll_question set

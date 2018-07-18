@@ -8,4 +8,5 @@ public interface QuestionVMMapper {
 	List<QuestionVM> findAllQuestionVM();
 	
 	QuestionVM findQuestionVMById(long id);
+	
 }
