@@ -40,6 +40,13 @@ public class QuestionServiceImpl implements IQuestionService{
 		
 		return questionMapper.findById(id);
 	}
+	
+	@Override
+	public QuestionVM findQuestionVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		
+		return questionVMMapper.findQuestionVMById(id);
+	}
 
 	@Override
 	public void save(Question question) throws Exception {

@@ -12,6 +12,15 @@
 		resultType="com.briup.app02.bean.Clazz">
 		select * from poll_clazz where id = #{id}
 	</select>
+	<select id="findUserById" parameterType="long"
+		resultType="com.briup.app02.bean.Clazz">
+		select * from poll_clazz where user_id = #{id}
+	</select>
+	<select id="findGradeById" parameterType="long"
+		resultType="com.briup.app02.bean.Clazz">
+		select * from poll_clazz where grade_id = #{id}
+	</select>
+	
 	<!-- 保存班级信息 -->
 	<insert id="save" parameterType="com.briup.app02.bean.Clazz">
 		insert into poll_clazz values

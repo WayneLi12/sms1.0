@@ -6,40 +6,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.User;
+import com.briup.app02.dao.UserMapper;
+import com.briup.app02.dao.extend.UserVMMapper;
 import com.briup.app02.service.IUserService;
+import com.briup.app02.vm.UserVM;
 
 @Service
 public class UserServiceImpl implements IUserService{
 
 	@Autowired
-	private IUserService userService;
+	private UserMapper userMapper;
+	@Autowired
+	private UserVMMapper userVMMapper;
 	
 	@Override
 	public List<User> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		List<User> list = userService.findAll();
+		List<User> list = userMapper.findAll();
 		return list;
+	}
+	
+	@Override
+	public List<UserVM> findAllUserVM() throws Exception {
+		// TODO Auto-generated method stub
+		return userVMMapper.findAllUserVM();
 	}
 
 	@Override
 	public User findById(long id) throws Exception {
 		// TODO Auto-generated method stub
-		User user = userService.findById(id);
+		User user = userMapper.findById(id);
 		return user;
+	}
+	
+	@Override
+	public UserVM findUserVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return userVMMapper.findUserVMById(id);
 	}
 
 	@Override
 	public void save(User user) throws Exception {
 		// TODO Auto-generated method stub
-		userService.save(user);
+		userMapper.save(user);
 	}
 
 	@Override
 	public void update(User user) throws Exception {
 		// TODO Auto-generated method stub
-		User u = userService.findById(user.getId());
+		User u = userMapper.findById(user.getId());
 		if(u != null){
-			userService.update(user);
+			userMapper.update(user);
 		}
 		else{
 			throw new Exception("要更新的教师不存在");
@@ -49,9 +66,9 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public void delete(long id) throws Exception {
 		// TODO Auto-generated method stub
-		User u = userService.findById(id);
+		User u = userMapper.findById(id);
 		if(u != null){
-			userService.delete(id);
+			userMapper.delete(id);
 		}
 		else{
 			throw new Exception("要删除的教师不存在");

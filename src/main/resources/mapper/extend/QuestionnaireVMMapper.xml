@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.app02.dao.extend.QuestionVMMapper">
+<mapper namespace="com.briup.app02.dao.extend.QuestionnaireVMMapper">
 	<!-- 查询所有班级信息 -->
 	<!-- 
 	QuestionVM    column  -property
@@ -10,31 +10,33 @@
 	grade_id - grade  通过grade_id 查找grade
 	user_id	- user  通过user_id 查找 user 
 	 -->
-	<select id="findAllQuestionVM" resultMap="QuestionVMResultMap">
-		select * from poll_question
+	<select id="findAllQuestionnaireVM" resultMap="QuestionnaireVMResultMap">
+		select * from poll_questionnaire
 	</select>
 	
-	<resultMap type="com.briup.app02.vm.QuestionVM" id="QuestionVMResultMap">
+	<resultMap type="com.briup.app02.vm.QuestionnaireVM" id="QuestionnaireVMResultMap">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
-		<result column="questiontype" property="questiontype"/>
-		<collection column="id" property="options"
-		select="com.briup.app02.dao.OptionMapper.findByQuestionId" >
+		<result column="description" property="description"/>
+		<result column="createdate" property="createdate"/>
+		<collection column="id" property="qqs"
+		select="com.briup.app02.dao.QqMapper.findByQuestionnaireId" >
 		</collection>	
 	</resultMap>
 	
 	
 	<!-- 通过id号查询班级信息 -->
-	<select id="findQuestionVMById" parameterType="long" resultMap="QuestionVMResult">
-		select * from poll_question where id = #{id}
+	<select id="findQuestionnaireVMById" parameterType="long" resultMap="QuestionnaireVMResult">
+		select * from poll_questionnaire where id = #{id}
 	</select>
-	<resultMap type="com.briup.app02.vm.QuestionVM" id="QuestionVMResult">
+	<resultMap type="com.briup.app02.vm.QuestionnaireVM" id="QuestionnaireVMResult">
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
-		<result column="questiontype" property="questiontype"/>
-		<association column ="id" property = "options" 
-		select="com.briup.app02.dao.OptionMapper.findByQuestionId">
-		</association>	
+		<result column="description" property="description"/>
+		<result column="createdate" property="createdate"/>
+		<collection column="id" property="qqs"
+		select="com.briup.app02.dao.QqMapper.findByQuestionnaireId" >
+		</collection>
 	</resultMap>
 
 	<!-- 保存班级信息 -->

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.briup.app02.bean.Grade;
 import com.briup.app02.service.IGradeService;
 import com.briup.app02.util.MsgResponse;
+import com.briup.app02.vm.GradeVM;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,11 +36,37 @@ public class GradeController {
 		}
 	}
 	
+	@ApiOperation(value="查询所有年级",notes="并且级联查询出年级的所有班级")
+	@GetMapping("findAllGradeVM")
+	public MsgResponse findAllGradeVM(){
+		try {
+			List<GradeVM> list = gradeService.findAllGradeVM();
+			return MsgResponse.success("查找成功", list);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	@ApiOperation(value="通过id查询年级")
 	@GetMapping("findGradeById")
 	public MsgResponse findGradeById(long id){
 		try {
 			Grade grade = gradeService.findById(id);
+			return MsgResponse.success("查找成功", grade);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="通过id查询年级",notes="并且级联查询该年级的所有班级")
+	@GetMapping("findGradeVMById")
+	public MsgResponse findGradeVMById(long id){
+		try {
+			GradeVM grade = gradeService.findGradeVMById(id);
 			return MsgResponse.success("查找成功", grade);
 		} catch (Exception e) {
 			// TODO: handle exception

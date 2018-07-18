@@ -7,17 +7,28 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Grade;
 import com.briup.app02.dao.GradeMapper;
+import com.briup.app02.dao.extend.GradeVMMapper;
 import com.briup.app02.service.IGradeService;
+import com.briup.app02.vm.GradeVM;
 
 @Service
 public class GradeServiceImpl implements IGradeService{
 	@Autowired
 	private GradeMapper gradeMapper;
+	@Autowired
+	private GradeVMMapper gradeVMMapper;
 
 	@Override
 	public List<Grade> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		List<Grade> list = gradeMapper.findAll();
+		return list;
+	}
+	
+	@Override
+	public List<GradeVM> findAllGradeVM() throws Exception {
+		// TODO Auto-generated method stub
+		List<GradeVM> list = gradeVMMapper.findAllGradeVM();
 		return list;
 	}
 
@@ -26,6 +37,12 @@ public class GradeServiceImpl implements IGradeService{
 		// TODO Auto-generated method stub
 		Grade grade = gradeMapper.findById(id);
 		return grade;
+	}
+	
+	@Override
+	public GradeVM findGradeVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return gradeVMMapper.findGradeVMById(id);
 	}
 
 	@Override

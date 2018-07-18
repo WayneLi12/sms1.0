@@ -7,6 +7,8 @@ import com.briup.app02.bean.Answer;
 public interface AnswerMapper {
 	List<Answer> findAll();
 	
+	List<Answer> findBySurveyId(long id);
+	
 	Answer findById(long id);
 	
 	void save(Answer answer);

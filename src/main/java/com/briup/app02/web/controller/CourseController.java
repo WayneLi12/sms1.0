@@ -76,7 +76,7 @@ public class CourseController {
 	}
 	
 	@ApiOperation(value="删除课程")
-	@PostMapping("deleteCourse")
+	@GetMapping("deleteCourse")
 	public MsgResponse deleteCourse(long id){
 		try {
 			courseService.delete(id);

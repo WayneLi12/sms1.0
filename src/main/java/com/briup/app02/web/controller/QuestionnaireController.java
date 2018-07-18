@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.app02.bean.Question;
 import com.briup.app02.bean.Questionnaire;
 import com.briup.app02.service.IQuestionnaireService;
 import com.briup.app02.util.MsgResponse;
+import com.briup.app02.vm.QuestionnaireVM;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,11 +37,37 @@ public class QuestionnaireController {
 		}
 	}
 	
+	@ApiOperation(value="查询所有问卷",notes="并级联查询出所有桥表信息")
+	@GetMapping("findAllQuestionnaireVM")
+	public MsgResponse findAllQuestionnaireVM(){
+		try {
+			List<QuestionnaireVM> list = questionnaireService.findAllQuestionnaireVM();
+			return MsgResponse.success("查询成功", list);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	@ApiOperation(value="通过id查询问卷")
 	@GetMapping("findQuestionnaireById")
 	public MsgResponse findQuestionnaireById(long id){
 		try {
 			Questionnaire q = questionnaireService.findById(id);
+			return MsgResponse.success("查询成功", q);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="通过id查询问卷",notes="并级联查询出桥表的信息")
+	@GetMapping("findQuestionnaireVMById")
+	public MsgResponse findQuestionnaireVMById(long id){
+		try {
+			QuestionnaireVM q = questionnaireService.findQuestionnaireVMById(id);
 			return MsgResponse.success("查询成功", q);
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -9,6 +9,8 @@ public interface QqMapper {
 	
 	Qq findById(long id);
 	
+	List<Qq> findByQuestionnaireId(long id);
+	
 	void save(Qq qq);
 	
 	void update(Qq qq);

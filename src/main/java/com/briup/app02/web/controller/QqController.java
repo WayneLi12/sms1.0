@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.app02.bean.Course;
 import com.briup.app02.bean.Qq;
 import com.briup.app02.service.IQqService;
 import com.briup.app02.util.MsgResponse;
@@ -98,7 +97,7 @@ public class QqController {
 		}
 	}
 	
-	@PostMapping("deleteQq")
+	@GetMapping("deleteQq")
 	public MsgResponse deleteQq(long id){
 		try {
 			qqService.delete(id);

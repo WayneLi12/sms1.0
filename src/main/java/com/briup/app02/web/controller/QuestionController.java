@@ -63,6 +63,19 @@ public class QuestionController {
 		}
 	}
 	
+	@ApiOperation(value="通过id查询所有问题",notes="并且能够级联查询出选项")
+	@GetMapping("findQuestionVMById")
+	public MsgResponse findQuestionVMById(long id){
+		try {
+			QuestionVM questionVM = questionService.findQuestionVMById(id);
+			return MsgResponse.success("查询成功", questionVM);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	@ApiOperation(value="保存问题")
 	@PostMapping("saveQuestion")
 	public MsgResponse saveQuestion(Question question){

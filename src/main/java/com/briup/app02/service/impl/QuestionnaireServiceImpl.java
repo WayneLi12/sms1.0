@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Questionnaire;
 import com.briup.app02.dao.QuestionnaireMapper;
+import com.briup.app02.dao.extend.QuestionnaireVMMapper;
 import com.briup.app02.service.IQuestionnaireService;
+import com.briup.app02.vm.QuestionnaireVM;
 
 @Service
 public class QuestionnaireServiceImpl implements IQuestionnaireService{
 
 	@Autowired
 	private QuestionnaireMapper questionnaireMapper;
+	@Autowired
+	private QuestionnaireVMMapper questionnaireVMMapper;
 
 	@Override
 	public List<Questionnaire> findAll() throws Exception {
@@ -21,7 +25,7 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService{
 		List<Questionnaire> list = questionnaireMapper.findAll();
 		return list;
 	}
-
+	
 	@Override
 	public Questionnaire findById(long id) throws Exception {
 		// TODO Auto-generated method stub
@@ -56,6 +60,18 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService{
 		else{
 			throw new Exception("要修改的问卷不存在");
 		}
+	}
+
+	@Override
+	public List<QuestionnaireVM> findAllQuestionnaireVM() throws Exception {
+		// TODO Auto-generated method stub
+		return questionnaireVMMapper.findAllQuestionnaireVM();
+	}
+
+	@Override
+	public QuestionnaireVM findQuestionnaireVMById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return questionnaireVMMapper.findQuestionnaireVMById(id);
 	}
 	
 }

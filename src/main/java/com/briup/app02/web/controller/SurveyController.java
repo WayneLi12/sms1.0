@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.app02.bean.Clazz;
 import com.briup.app02.bean.Survey;
 import com.briup.app02.service.ISurveyService;
 import com.briup.app02.util.MsgResponse;
@@ -26,7 +25,7 @@ public class SurveyController {
 	@Autowired
 	private ISurveyService surveyService;
 	
-	@ApiOperation(value="查询所有调查",notes="但是不可以级联查找到教师，班级，课程，问卷")
+	@ApiOperation(value="查询所有调查",notes="但是不可以级联查找到教师，班级，课程，问卷，答卷")
 	@GetMapping("findAllSurvey")
 	public MsgResponse findAllSurvey() {
 		try {
@@ -39,7 +38,7 @@ public class SurveyController {
 		}
 	}
 	
-	@ApiOperation(value="查找所有调查",notes="并且可以级联查找到教师，班级，课程，问卷")
+	@ApiOperation(value="查找所有调查",notes="并且可以级联查找到教师，班级，课程，问卷，答卷")
 	@GetMapping("findAllSurveyVM")
 	public MsgResponse findAllSurveyVM() {
 		try {
@@ -52,7 +51,7 @@ public class SurveyController {
 		}
 	}
 	
-	@ApiOperation(value="通过id查找调查",notes="但是不可以级联查找到教师，班级，课程，问卷")
+	@ApiOperation(value="通过id查找调查",notes="但是不可以级联查找到教师，班级，课程，问卷，答卷")
 	@GetMapping("findSurveyById")
 	public MsgResponse findSurveyById(long id) {
 		try {
@@ -64,7 +63,7 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation(value="通过id查找调查",notes="并且可以级联查找到教师，班级，课程，问卷")
+	@ApiOperation(value="通过id查找调查",notes="并且可以级联查找到教师，班级，课程，问卷，答卷")
 	@GetMapping("findSurveyVMById")
 	public MsgResponse findSurveyVMById(long id) {
 		try {

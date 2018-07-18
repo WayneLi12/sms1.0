@@ -7,7 +7,7 @@ import com.briup.app02.bean.Option;
 public interface OptionMapper {
 	List<Option> findAll();
 	
-	List<Option> findByQuestionId();
+	List<Option> findByQuestionId(long question_id);
 
 	Option findById(long id);
 

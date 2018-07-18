@@ -12,6 +12,10 @@
 		resultType="com.briup.app02.bean.Qq">
 		select * from poll_qq where id = #{id}
 	</select>
+	<select id="findByQuestionnaireId" parameterType="long"
+		resultType="com.briup.app02.bean.Qq">
+		select * from poll_qq where questionnaire_id = #{id}
+	</select>
 	<!-- 保存信息 -->
 	<insert id="save" parameterType="com.briup.app02.bean.Qq">
 		insert into poll_qq values

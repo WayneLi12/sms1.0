@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.app02.bean.Answer;
-import com.briup.app02.bean.Clazz;
 import com.briup.app02.service.IAnswerService;
 import com.briup.app02.util.MsgResponse;
 

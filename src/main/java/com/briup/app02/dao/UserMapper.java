@@ -7,11 +7,11 @@ import com.briup.app02.bean.User;
 public interface UserMapper {
 	List<User> findAll();
 	
-	UserMapper findById(long id);
+	User findById(long id);
 	
-	void save(UserMapper user);
+	void save(User user);
 	
-	void update(UserMapper user);
+	void update(User user);
 	
 	void delete(long id);
 }
